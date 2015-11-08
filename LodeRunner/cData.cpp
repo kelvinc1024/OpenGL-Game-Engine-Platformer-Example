@@ -1,6 +1,6 @@
 #pragma warning(disable:4996)
 #include "cData.h"
-#include "Globals.h
+#include "Globals.h"
 
 cData::cData(void) {}
 cData::~cData(void) {}
