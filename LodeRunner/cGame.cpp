@@ -29,11 +29,13 @@ bool cGame::Init(int lvl)
 	glEnable(GL_ALPHA_TEST);
 	glEnable(GL_DEPTH_TEST);
 
-	//Texture & Data initialization
-	if (!Data.Load())printf("Some assets may missing");
-	
+	//Texture initialization
+	if (!Data.Load())printf("Some images may missing");
+	//Stage initialization
+	if (!Scene.Load())printf("Some levels text may missing");
+
 	for (int i = 0;i < TOTAL_TILE_Y;i++) {
-		printf("%s\n", Data.Stage[i]);
+		printf("%s\n", Scene.Stage[i]);
 	}
 
 
@@ -90,7 +92,7 @@ void cGame::UpdateCamera(int h1, int h2)
 }
 
 void cGame::Reshape(int w, int h) {
-
+	glViewport(0, 0, w, h);
 }
 
 //Output
@@ -104,6 +106,9 @@ void cGame::Render()
 	glLoadIdentity();
 
 	
+	Data.GetSize(IMG_STAGE, &tex_w, &tex_h);
+	Scene.Draw(Data.GetID(IMG_STAGE), tex_w, tex_h);
+
 
 	//glEnable(GL_BLEND);			   // Turn Blending On
 	////glDisable(GL_DEPTH_TEST);    // Turn Depth Testing Off

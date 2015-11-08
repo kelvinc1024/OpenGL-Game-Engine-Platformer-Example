@@ -3,6 +3,7 @@
 #include "cSound.h"
 #include "cData.h"
 #include "cRect.h"
+#include "cScene.h"
 
 #define GAME_WIDTH	800
 #define GAME_HEIGHT 600
@@ -34,7 +35,8 @@ private:
 	cRect visible_area;
 	cData Data;
 	cSound Sound;
-	
+	cScene Scene;
+
 	float time;
 
 	void UpdateCamera(int h1, int h2);

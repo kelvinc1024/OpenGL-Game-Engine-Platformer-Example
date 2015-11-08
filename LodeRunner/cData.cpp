@@ -33,16 +33,7 @@ bool cData::Load()
 	res = LoadImage(IMG_STAGE,		"Textures/NES - Lode Runner - Tileset.png", GL_RGBA);
 	if (!res) return false;
 
-	FILE *f = fopen("Levels/level01.txt", "r");
-	if (f) {
-		int i = 0;
-		while (!feof(f)) {
-			fscanf(f, "%[^\n]\n", Stage[i++]);
-		}
-	}
-	else {
-		return false;
-	}
+	
 	return true;
 }
 
