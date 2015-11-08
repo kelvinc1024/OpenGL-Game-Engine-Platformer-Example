@@ -16,20 +16,6 @@ bool cSound::Load()
 {
 	system->createStream("Sounds/03_-_Lode_Runner_-_NES_-_In-Game.ogg", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sounds[SOUND_AMBIENT1]);
 	//system->createStream("Sounds/ambient1.mp3", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sounds[SOUND_AMBIENT1]);
-	system->createStream("Sounds/ambient2.mp3", FMOD_SOFTWARE | FMOD_LOOP_NORMAL, 0, &sounds[SOUND_AMBIENT2]);
-	system->createSound("Sounds/gameover.mp3", FMOD_HARDWARE, 0, &sounds[SOUND_GAMEOVER]);
-	system->createSound("Sounds/slash.wav", FMOD_HARDWARE, 0, &sounds[SOUND_SLASH]);
-	system->createSound("Sounds/superslash.wav", FMOD_HARDWARE, 0, &sounds[SOUND_SUPERSLASH]);
-	system->createSound("Sounds/hit.wav", FMOD_HARDWARE, 0, &sounds[SOUND_HIT]);
-	system->createSound("Sounds/explosion.wav", FMOD_HARDWARE, 0, &sounds[SOUND_EXPLOSION]);
-	system->createSound("Sounds/fireball.wav", FMOD_HARDWARE, 0, &sounds[SOUND_FIREBALL]);
-	system->createSound("Sounds/superfireball.wav", FMOD_HARDWARE, 0, &sounds[SOUND_SUPERFIREBALL]);
-	system->createSound("Sounds/arrow.wav", FMOD_HARDWARE, 0, &sounds[SOUND_ARROW]);
-	system->createSound("Sounds/death.wav", FMOD_HARDWARE, 0, &sounds[SOUND_DEATH]);
-	system->createSound("Sounds/token.wav", FMOD_HARDWARE, 0, &sounds[SOUND_TOKEN]);
-	system->createSound("Sounds/fail.wav", FMOD_HARDWARE, 0, &sounds[SOUND_FAIL]);
-	system->createSound("Sounds/charged.wav", FMOD_HARDWARE, 0, &sounds[SOUND_CHARGED]);
-	system->createSound("Sounds/victory.mp3", FMOD_HARDWARE, 0, &sounds[SOUND_VICTORY]);
 	return true;
 }
 

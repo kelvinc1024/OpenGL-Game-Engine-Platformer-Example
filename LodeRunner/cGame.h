@@ -1,10 +1,8 @@
 #pragma once
 
 #include "cSound.h"
-#include "cShader.h"
 #include "cData.h"
-//#include "cRect.h"
-#include "cScene.h"
+#include "cRect.h"
 
 #define GAME_WIDTH	800
 #define GAME_HEIGHT 600
@@ -36,8 +34,6 @@ private:
 	cRect visible_area;
 	cData Data;
 	cSound Sound;
-	cShader Shader;
-	cScene Scene;
 	
 	float time;
 

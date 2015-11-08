@@ -21,9 +21,6 @@
     <ClCompile Include="cGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cShader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,18 +30,12 @@
     <ClCompile Include="cSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cTexture.h">
@@ -57,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cRect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

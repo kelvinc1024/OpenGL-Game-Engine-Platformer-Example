@@ -121,8 +121,6 @@
   <ItemGroup>
     <ClCompile Include="cData.cpp" />
     <ClCompile Include="cGame.cpp" />
-    <ClCompile Include="cScene.cpp" />
-    <ClCompile Include="cShader.cpp" />
     <ClCompile Include="cSound.cpp" />
     <ClCompile Include="cTexture.cpp" />
     <ClCompile Include="GLUTMain.cpp" />
@@ -131,8 +129,6 @@
     <ClInclude Include="cData.h" />
     <ClInclude Include="cGame.h" />
     <ClInclude Include="cRect.h" />
-    <ClInclude Include="cScene.h" />
-    <ClInclude Include="cShader.h" />
     <ClInclude Include="cSound.h" />
     <ClInclude Include="cTexture.h" />
     <ClInclude Include="Globals.h" />

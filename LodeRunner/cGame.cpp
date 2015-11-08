@@ -19,29 +19,27 @@ bool cGame::Init(int lvl)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	visible_area.left = 0;
-	visible_area.right = 180;
+	visible_area.right = GAME_WIDTH;
 	visible_area.bottom = 0;
-	visible_area.top = 600;
+	visible_area.top = GAME_HEIGHT;
 
-	glOrtho(visible_area.left, visible_area.right, visible_area.bottom, visible_area.top, 3, -100);
+	glOrtho(visible_area.left, visible_area.right, visible_area.bottom, visible_area.top, 3, -50);
 	glMatrixMode(GL_MODELVIEW);
 
 	glEnable(GL_ALPHA_TEST);
 	glEnable(GL_DEPTH_TEST);
 
-	//Texture initialization
-	if (!Data.Load())printf("Some image may missing");
+	//Texture & Data initialization
+	if (!Data.Load())printf("Some assets may missing");
+	
+	for (int i = 0;i < TOTAL_TILE_Y;i++) {
+		printf("%s\n", Data.Stage[i]);
+	}
 
-	int tex_w, tex_h;
-	Data.GetSize(IMG_TILESET, &tex_w, &tex_h);
-	Scene.LoadLevel(1, tex_w, tex_h);
 
 	//Sound initialization
 	Sound.Load();
 	if (lvl == 1) Sound.Play(SOUND_AMBIENT1);
-
-	//Shader initialization
-	Shader.Load();
 
 	return true;
 }
@@ -103,41 +101,18 @@ void cGame::Render()
 	bool run = true;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glLoadIdentity();
 
-
-	//Activacion de shaders
-	if (time > 0.0f)
-	{
-		glActiveTexture(GL_TEXTURE0);
-		Shader.Attach(SHADER_FADE_F);
-		Shader.Activate();
-		Shader.SetUniform("time", time);
-		Shader.SetUniform("tex", 0);
-		Shader.SetUniform("flatcolor", 0);
-	}
-
-	//Pintado
-	Data.GetSize(IMG_TILESET, &tex_w, &tex_h);
-	Scene.Draw(Data.GetID(IMG_TILESET), tex_w, tex_h, run);
-
-	glEnable(GL_BLEND);			   // Turn Blending On
-								   //glDisable(GL_DEPTH_TEST);    // Turn Depth Testing Off
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
 
-
+	//glEnable(GL_BLEND);			   // Turn Blending On
+	////glDisable(GL_DEPTH_TEST);    // Turn Depth Testing Off
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
 	glDisable(GL_BLEND);          // Turn Blending Off
-								  //glEnable(GL_DEPTH_TEST);    // Turn Depth Testing On
+	//glEnable(GL_DEPTH_TEST);    // Turn Depth Testing On
 	glAlphaFunc(GL_GREATER, 0.05f);
 
-	if (time > 0.0f)
-	{
-		Shader.Detach(SHADER_FADE_F); 
-		time -= 0.01f;
-		Shader.Deactivate();
-	}
-
+	
 	glutSwapBuffers();
 }
