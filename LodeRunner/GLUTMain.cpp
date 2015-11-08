@@ -2,7 +2,7 @@
 #include "cGame.h"
 
 //Delete console
-#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+//#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 
 cGame Game;
 
@@ -52,8 +52,8 @@ void main(int argc, char** argv)
 	//Create centered window
 	res_x = glutGet(GLUT_SCREEN_WIDTH);
 	res_y = glutGet(GLUT_SCREEN_HEIGHT);
-	pos_x = (res_x >> 1) - (GAME_WIDTH >> 1);
-	pos_y = (res_y >> 1) - (GAME_HEIGHT >> 1);
+	pos_x = (res_x / 2) - (GAME_WIDTH /2);
+	pos_y = (res_y / 2) - (GAME_HEIGHT /2);
 
 	glutInitWindowPosition(pos_x, pos_y);
 	glutInitWindowSize(GAME_WIDTH, GAME_HEIGHT);
