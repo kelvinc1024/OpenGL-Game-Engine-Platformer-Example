@@ -1,5 +1,5 @@
 #pragma once
-#include "stdio.h"
+#include "Globals.h"
 #define TOTAL_TILE_Y 18
 #define TOTAL_TILE_X 1000
 #define TILE_SIZE 16
