@@ -51,6 +51,9 @@
     <ClCompile Include="cSound.cpp">
       <Filter>Source Files\lib</Filter>
     </ClCompile>
+    <ClCompile Include="cMenuScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="cRect.h">
       <Filter>Header Files\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="cMenuScene.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

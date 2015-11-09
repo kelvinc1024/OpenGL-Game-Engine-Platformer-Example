@@ -15,8 +15,11 @@
 class cSound
 {
 public:
-	cSound(void);
-	virtual ~cSound(void);
+	static cSound& getInstance()
+	{
+		static cSound instance;
+		return instance;
+	}
 
 	bool Load();
 	void Play(int sound_id);
@@ -30,4 +33,9 @@ public:
 	FMOD::Channel*    ambient1Channel;
 	FMOD::Channel*    ambient2Channel;
 	FMOD::DSP*        dspSmoothStop;
+private:
+	~cSound(void);
+	cSound(void);
+	cSound(cSound const&) = delete;
+	void operator=(cSound const&) = delete;
 };

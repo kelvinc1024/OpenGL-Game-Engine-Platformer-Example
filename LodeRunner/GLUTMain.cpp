@@ -84,7 +84,7 @@ void main(int argc, char** argv)
 	}
 
 	//Game initializations
-	Game.Init(1);
+	Game.Init();
 
 	//Application loop
 	glutMainLoop();

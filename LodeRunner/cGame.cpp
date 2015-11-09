@@ -1,5 +1,6 @@
 #pragma warning(disable:4996)
 #include "cGame.h"
+#include "cMenuScene.h"
 
 cGame::cGame(void)
 {
@@ -9,7 +10,7 @@ cGame::~cGame(void)
 {
 }
 
-bool cGame::Init(int lvl)
+bool cGame::Init()
 {
 	time = 1.0f;
 
@@ -30,27 +31,15 @@ bool cGame::Init(int lvl)
 
 	//Texture initialization
 	if (!cAssetManager::getInstance().Load())printf("Some images may missing");
-	//Stage initialization
-	active_scene = new cLevelScene();
-	if (!((cLevelScene*)active_scene)->Load())printf("Some levels text may missing");
 
 	//Sound initialization
-	Sound.Load();
-	if (lvl == 1) Sound.Play(SOUND_AMBIENT1);
+	if (!cSound::getInstance().Load())printf("Some sound may missing");
+
+	//Stage initialization
+	active_scene = new cMenuScene();
 
 	
-	//for (int i = 0;i < TOTAL_TILE_Y;i++) {
-	//	printf("%s\n", Scene.Stage[i]);
-	//}
-
-
 	
-	return true;
-}
-
-bool cGame::LoadDynamicLayer(int lvl)
-{
-
 	return true;
 }
 
@@ -60,7 +49,7 @@ bool cGame::Loop()
 	int t1, t2;
 	t1 = glutGet(GLUT_ELAPSED_TIME);
 
-	bSceneValid = Process();
+	bSceneValid = Update();
 	if (bSceneValid) Render();
 
 	do {
@@ -91,15 +80,11 @@ void cGame::ReadMouse(int button, int state, int x, int y)
 }
 
 //Process
-bool cGame::Process()
+bool cGame::Update(float tpf/*=0.0333*/)
 {
 	return true;
 }
 
-void cGame::UpdateCamera(int h1, int h2)
-{
-
-}
 
 void cGame::Reshape(int w, int h) {
 	glViewport(0, 0, w, h);
@@ -116,7 +101,6 @@ void cGame::Render()
 	glLoadIdentity();
 
 	active_scene->Draw();
-
 
 	//glEnable(GL_BLEND);			   // Turn Blending On
 	////glDisable(GL_DEPTH_TEST);    // Turn Depth Testing Off
