@@ -131,6 +131,7 @@
     <ClCompile Include="cSound.cpp" />
     <ClCompile Include="cSprite.cpp" />
     <ClCompile Include="cTexture.cpp" />
+    <ClCompile Include="cTile.cpp" />
     <ClCompile Include="GLUTMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="cSound.h" />
     <ClInclude Include="cSprite.h" />
     <ClInclude Include="cTexture.h" />
+    <ClInclude Include="cTile.h" />
     <ClInclude Include="Globals.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -6,7 +6,7 @@
 
 cLevelScene::cLevelScene()
 {
-	
+
 }
 
 cLevelScene::~cLevelScene()
@@ -19,7 +19,9 @@ bool cLevelScene::Load()
 	if (f) {
 		int i = 0;
 		while (!feof(f)) {
-			fscanf(f, "%[^\n]\n", Stage[i++]);
+			char temp[1000];
+			fscanf(f, "%[^\n]\n", &Stage[i]);
+			++i;
 		}
 	}
 	else {
@@ -29,7 +31,7 @@ bool cLevelScene::Load()
 
 void cLevelScene::Render()
 {
-	int tex_id = cAssetManager::getInstance().GetID(IMG_STAGE);
+	int tex_id = cAssetManager::getInstance().GetID(SPRITESHEET_TILES);
 	int tex_w, tex_h;
 	cAssetManager::getInstance().GetSize(tex_id, &tex_w, &tex_h);
 
@@ -45,12 +47,16 @@ void cLevelScene::Render()
 	}
 	glDisable(GL_TEXTURE_2D);
 
+
 	renderBitmapString(5, 580, 9, GLUT_BITMAP_HELVETICA_18, "Lighthouse3D", 1, 0, 0);
 }
 
 void cLevelScene::Init()
 {
 	Load();
+	for (int i = 0;i < TOTAL_TILE_Y;i++) {
+		printf("%s\n", Stage[i]);
+	}
 }
 
 void cLevelScene::Update(float tpf /*= 0.0333*/)

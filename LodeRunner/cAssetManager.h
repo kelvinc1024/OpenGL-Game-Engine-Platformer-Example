@@ -9,7 +9,7 @@
 
 //Image identifiers
 #define SPRITESHEET_PLAYERS	2
-#define IMG_STAGE			1
+#define SPRITESHEET_TILES	1
 #define BG_COLORED_GRASS	3
 
 class cAssetManager
@@ -26,7 +26,7 @@ public:
 	bool Load();
 
 	std::vector<cSprite> player;
-
+	std::vector<cSprite> tiles;
 private:
 	~cAssetManager(void);
 	cAssetManager(void);
