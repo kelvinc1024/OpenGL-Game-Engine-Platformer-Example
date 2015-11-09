@@ -12,7 +12,6 @@ cGame::~cGame(void)
 bool cGame::Init(int lvl)
 {
 	time = 1.0f;
-	level = 1;
 
 	//Graphics initialization
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -32,17 +31,20 @@ bool cGame::Init(int lvl)
 	//Texture initialization
 	if (!cAssetManager::getInstance().Load())printf("Some images may missing");
 	//Stage initialization
-	if (!Scene.Load())printf("Some levels text may missing");
-
-	for (int i = 0;i < TOTAL_TILE_Y;i++) {
-		printf("%s\n", Scene.Stage[i]);
-	}
-
+	active_scene = new cLevelScene();
+	if (!((cLevelScene*)active_scene)->Load())printf("Some levels text may missing");
 
 	//Sound initialization
 	Sound.Load();
 	if (lvl == 1) Sound.Play(SOUND_AMBIENT1);
 
+	
+	//for (int i = 0;i < TOTAL_TILE_Y;i++) {
+	//	printf("%s\n", Scene.Stage[i]);
+	//}
+
+
+	
 	return true;
 }
 
@@ -54,10 +56,16 @@ bool cGame::LoadDynamicLayer(int lvl)
 
 bool cGame::Loop()
 {
-	bool res = true;
+	
+	int t1, t2;
+	t1 = glutGet(GLUT_ELAPSED_TIME);
 
-	res = Process();
-	if (res) Render();
+	bSceneValid = Process();
+	if (bSceneValid) Render();
+
+	do {
+		t2 = glutGet(GLUT_ELAPSED_TIME);
+	} while (t2 - t1 < 1000 / 30);   //30 fps = 1000/30
 
 	return true;
 }
@@ -69,15 +77,17 @@ void cGame::Finalize()
 //Input
 void cGame::ReadKeyboard(unsigned char key, int x, int y, bool press)
 {
+	active_scene->ReadKeyboard(key, x, y, press);
 }
 
 void cGame::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
 {
-
+	active_scene->ReadSpecialKeyboard(key, x, y, press);
 }
 
 void cGame::ReadMouse(int button, int state, int x, int y)
 {
+	active_scene->ReadMouse(button, state, x, y);
 }
 
 //Process
@@ -105,9 +115,7 @@ void cGame::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	
-	cAssetManager::getInstance().GetSize(IMG_STAGE, &tex_w, &tex_h);
-	Scene.Draw(cAssetManager::getInstance().GetID(IMG_STAGE), tex_w, tex_h);
+	active_scene->Draw();
 
 
 	//glEnable(GL_BLEND);			   // Turn Blending On

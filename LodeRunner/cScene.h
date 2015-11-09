@@ -1,18 +1,15 @@
 #pragma once
-#include "Globals.h"
-#define TOTAL_TILE_Y 18
-#define TOTAL_TILE_X 1000
-#define TILE_SIZE 16
-#define TEXTURE_TILE_SIZE 16
-
 class cScene
 {
 public:
 	cScene();
 	~cScene();
-	bool Load();
-	char Stage[TOTAL_TILE_Y][TOTAL_TILE_X];
-
-	void Draw(int tex_id, int tex_w, int tex_h);
+	virtual void Init()=0;
+	virtual void Update(float tpf = 0.0333)=0;
+	virtual void Draw()=0;
+	//Input
+	virtual void ReadKeyboard(unsigned char key, int x, int y, bool press)=0;
+	virtual void ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)=0;
+	virtual void ReadMouse(int button, int state, int x, int y)=0;
 };
 

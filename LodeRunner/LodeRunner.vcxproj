@@ -77,7 +77,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>corona.lib;freeglut.lib;glew32.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>corona.lib;freeglut.lib;glew32.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,6 +124,7 @@
     <ClCompile Include="cAnimControl.cpp" />
     <ClCompile Include="cAssetManager.cpp" />
     <ClCompile Include="cGame.cpp" />
+    <ClCompile Include="cLevelScene.cpp" />
     <ClCompile Include="cScene.cpp" />
     <ClCompile Include="cSound.cpp" />
     <ClCompile Include="cSprite.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="cAssetManager.h" />
     <ClInclude Include="cGame.h" />
     <ClInclude Include="cRect.h" />
+    <ClInclude Include="cLevelScene.h" />
     <ClInclude Include="cScene.h" />
     <ClInclude Include="cSound.h" />
     <ClInclude Include="cSprite.h" />

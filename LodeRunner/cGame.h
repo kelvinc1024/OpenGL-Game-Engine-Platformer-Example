@@ -3,7 +3,9 @@
 #include "cSound.h"
 #include "cAssetManager.h"
 #include "cRect.h"
+#include "cLevelScene.h"
 #include "cScene.h"
+#include "cLevelScene.h"
 
 #define GAME_WIDTH	800
 #define GAME_HEIGHT 600
@@ -30,11 +32,12 @@ public:
 
 private:
 	unsigned char keys[256];
-	
-	int level;
+
+	bool bSceneValid = true;
+
+	cScene *active_scene;
 	cRect visible_area;
 	cSound Sound;
-	cScene Scene;
 
 	float time;
 

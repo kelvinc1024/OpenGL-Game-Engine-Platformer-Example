@@ -10,7 +10,7 @@ public:
 	void RemoveAnim(std::string name);
 	void SetAnim(std::string animType, std::string name, int start, int end, float duration);
 	void SetActiveAnim(std::string name);
-	void UpdateAnim(float tpf);
+	void UpdateAnim(float tpf=0.0333);
 	int Index() const { return index; }
 	std::string ActiveName() const { return activeName; }
 private:
