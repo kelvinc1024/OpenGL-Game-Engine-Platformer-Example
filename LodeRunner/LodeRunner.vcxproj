@@ -126,6 +126,7 @@
     <ClCompile Include="cGame.cpp" />
     <ClCompile Include="cLevelScene.cpp" />
     <ClCompile Include="cMenuScene.cpp" />
+    <ClCompile Include="cPlayer.cpp" />
     <ClCompile Include="cScene.cpp" />
     <ClCompile Include="cSound.cpp" />
     <ClCompile Include="cSprite.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="cAssetManager.h" />
     <ClInclude Include="cGame.h" />
     <ClInclude Include="cMenuScene.h" />
+    <ClInclude Include="cPlayer.h" />
     <ClInclude Include="cRect.h" />
     <ClInclude Include="cLevelScene.h" />
     <ClInclude Include="cScene.h" />

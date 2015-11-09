@@ -54,6 +54,9 @@
     <ClCompile Include="cMenuScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files\lib</Filter>
     </ClInclude>
     <ClInclude Include="cMenuScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
