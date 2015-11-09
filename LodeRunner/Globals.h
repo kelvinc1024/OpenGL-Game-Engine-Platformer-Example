@@ -7,5 +7,7 @@
 #include <list>
 #include <fstream>
 #include <string>
+#include <map>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
+

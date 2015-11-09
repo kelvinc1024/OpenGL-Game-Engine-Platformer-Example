@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cSound.h"
-#include "cData.h"
+#include "cAssetManager.h"
 #include "cRect.h"
 #include "cScene.h"
 
@@ -33,7 +33,6 @@ private:
 	
 	int level;
 	cRect visible_area;
-	cData Data;
 	cSound Sound;
 	cScene Scene;
 

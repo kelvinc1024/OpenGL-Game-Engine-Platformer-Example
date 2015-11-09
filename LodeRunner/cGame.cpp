@@ -30,7 +30,7 @@ bool cGame::Init(int lvl)
 	glEnable(GL_DEPTH_TEST);
 
 	//Texture initialization
-	if (!Data.Load())printf("Some images may missing");
+	if (!cAssetManager::getInstance().Load())printf("Some images may missing");
 	//Stage initialization
 	if (!Scene.Load())printf("Some levels text may missing");
 
@@ -106,8 +106,8 @@ void cGame::Render()
 	glLoadIdentity();
 
 	
-	Data.GetSize(IMG_STAGE, &tex_w, &tex_h);
-	Scene.Draw(Data.GetID(IMG_STAGE), tex_w, tex_h);
+	cAssetManager::getInstance().GetSize(IMG_STAGE, &tex_w, &tex_h);
+	Scene.Draw(cAssetManager::getInstance().GetID(IMG_STAGE), tex_w, tex_h);
 
 
 	//glEnable(GL_BLEND);			   // Turn Blending On
