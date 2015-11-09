@@ -15,7 +15,7 @@ public:
 	bool Load();
 	char Stage[TOTAL_TILE_Y][TOTAL_TILE_X];
 
-	virtual void Draw();
+	virtual void Render();
 
 	virtual void Init();
 

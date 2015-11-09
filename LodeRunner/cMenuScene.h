@@ -10,7 +10,7 @@ public:
 
 	virtual void Update(float tpf = 0.0333) override;
 
-	virtual void Draw() override;
+	virtual void Render() override;
 
 	virtual void ReadKeyboard(unsigned char key, int x, int y, bool press) override;
 

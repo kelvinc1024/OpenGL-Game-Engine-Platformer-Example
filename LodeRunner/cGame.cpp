@@ -47,18 +47,22 @@ bool cGame::Loop()
 	int t1, t2;
 	t1 = glutGet(GLUT_ELAPSED_TIME);
 
-	bSceneValid = Update();
-	if (bSceneValid) Render();
+	if (bIsFirst) {
+		bIsFirst = false;
+		active_scene->Init();
+	}
+	Update();
+	Render();
+
+	if (bSceneValid == false) {
+		RealUpdateScene();
+	}
 
 	do {
 		t2 = glutGet(GLUT_ELAPSED_TIME);
 	} while (t2 - t1 < 1000 / 30);   //30 fps = 1000/30
 
 	return true;
-}
-
-void cGame::Finalize()
-{
 }
 
 //Input
@@ -80,6 +84,7 @@ void cGame::ReadMouse(int button, int state, int x, int y)
 //Process
 bool cGame::Update(float tpf/*=0.0333*/)
 {
+	active_scene->Update(tpf);
 	return true;
 }
 
@@ -98,7 +103,7 @@ void cGame::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	active_scene->Draw();
+	active_scene->Render();
 
 	//glEnable(GL_BLEND);			   // Turn Blending On
 	////glDisable(GL_DEPTH_TEST);    // Turn Depth Testing Off
@@ -110,4 +115,17 @@ void cGame::Render()
 
 	
 	glutSwapBuffers();
+}
+
+void cGame::UpdateScene(cScene *scene)
+{
+	bSceneValid = false;
+	next_scene = &(*scene);
+}
+
+void cGame::RealUpdateScene()
+{
+	bSceneValid = true;
+	bIsFirst = true;
+	active_scene = &(*next_scene);
 }

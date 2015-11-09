@@ -19,7 +19,6 @@ public:
 
 	bool Init();
 	bool Loop();
-	void Finalize();
 
 	//Input
 	void ReadKeyboard(unsigned char key, int x, int y, bool press);
@@ -31,6 +30,7 @@ public:
 	//Output
 	void Render();
 
+	void UpdateScene(cScene *scene);
 private:
 	~cGame(void);
 	cGame(void);
@@ -39,9 +39,13 @@ private:
 
 	unsigned char keys[256];
 	bool bSceneValid = true;
+	bool bIsFirst = true;
 
 	cScene *active_scene;
+	cScene *next_scene;
 	cRect visible_area;
 
 	float time;
+
+	void RealUpdateScene();
 };

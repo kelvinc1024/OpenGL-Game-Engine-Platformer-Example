@@ -1,4 +1,6 @@
 #include "cMenuScene.h"
+#include "cLevelScene.h"
+#include "cGame.h"
 
 cMenuScene::cMenuScene()
 {
@@ -6,6 +8,7 @@ cMenuScene::cMenuScene()
 }
 
 cMenuScene::~cMenuScene()
+
 {
 
 }
@@ -18,7 +21,7 @@ void cMenuScene::Update(float tpf /*= 0.0333*/)
 {
 }
 
-void cMenuScene::Draw()
+void cMenuScene::Render()
 {
 	renderBitmapString(5, 580, 9, GLUT_BITMAP_HELVETICA_18, "Menu", 1, 0, 0);
 
@@ -37,7 +40,7 @@ void cMenuScene::ReadKeyboard(unsigned char key, int x, int y, bool press)
 	}
 
 	if (key == 13) {
-		
+		cGame::getInstance().UpdateScene(new cLevelScene());
 	}
 }
 

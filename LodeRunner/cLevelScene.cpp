@@ -27,7 +27,7 @@ bool cLevelScene::Load()
 	}
 }
 
-void cLevelScene::Draw()
+void cLevelScene::Render()
 {
 	int tex_id = cAssetManager::getInstance().GetID(IMG_STAGE);
 	int tex_w, tex_h;
