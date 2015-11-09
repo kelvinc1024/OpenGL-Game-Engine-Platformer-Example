@@ -5,11 +5,12 @@
 #include "cSprite.h"
 
 //Image array size
-#define NUM_TEX		 2
+#define NUM_TEX		 3
 
 //Image identifiers
 #define SPRITESHEET_PLAYERS	2
-#define IMG_STAGE		1
+#define IMG_STAGE			1
+#define BG_COLORED_GRASS	3
 
 class cAssetManager
 {

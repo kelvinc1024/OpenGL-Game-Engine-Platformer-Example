@@ -48,6 +48,8 @@ bool cAssetManager::Load()
 		}
 	}
 
+	res = LoadImage(BG_COLORED_GRASS, "Textures/PNG/Backgrounds/colored_grass.png");
+	if (!res) return false;
 
 	return true;
 }

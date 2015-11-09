@@ -33,6 +33,18 @@ void cLevelScene::Draw()
 	int tex_w, tex_h;
 	cAssetManager::getInstance().GetSize(tex_id, &tex_w, &tex_h);
 
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, cAssetManager::getInstance().GetID(BG_COLORED_GRASS));
+	for (int j = 0;j < 10;j++) {
+		glBegin(GL_QUADS);
+		glTexCoord2f(0, 1);	glVertex3i(j*600, 0, 100);
+		glTexCoord2f(1, 1);	glVertex3i((j + 1)* 600, 0, 100);
+		glTexCoord2f(1, 0);	glVertex3i((j + 1)* 600, 600, 100);
+		glTexCoord2f(0, 0);	glVertex3i(j*600, 600, 100);
+		glEnd();
+	}
+	glDisable(GL_TEXTURE_2D);
+
 	float x0, y0, x1, y1;
 	float tex_offset_x, tex_offset_y;
 
@@ -59,6 +71,9 @@ void cLevelScene::Draw()
 		}
 	}
 	glDisable(GL_TEXTURE_2D);
+
+
+	renderBitmapString(5, 580, 9, GLUT_BITMAP_HELVETICA_18, "Lighthouse3D");
 }
 
 void cLevelScene::Init()

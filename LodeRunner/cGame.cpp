@@ -22,7 +22,7 @@ bool cGame::Init(int lvl)
 	visible_area.bottom = 0;
 	visible_area.top = GAME_HEIGHT;
 
-	glOrtho(visible_area.left, visible_area.right, visible_area.bottom, visible_area.top, 3, -50);
+	glOrtho(visible_area.left, visible_area.right, visible_area.bottom, visible_area.top, 3, -101);
 	glMatrixMode(GL_MODELVIEW);
 
 	glEnable(GL_ALPHA_TEST);
