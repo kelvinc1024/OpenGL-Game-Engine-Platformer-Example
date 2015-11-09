@@ -4,39 +4,39 @@
 //Delete console
 //#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 
-cGame Game;
+cGame *Game = &(cGame::getInstance());
 
 void AppReshape(int w, int h)
 {
-	Game.Reshape(w, h);
+	Game->Reshape(w, h);
 }
 void AppRender()
 {
-	Game.Render();
+	Game->Render();
 }
 void AppKeyboard(unsigned char key, int x, int y)
 {
-	Game.ReadKeyboard(key, x, y, true);
+	Game->ReadKeyboard(key, x, y, true);
 }
 void AppKeyboardUp(unsigned char key, int x, int y)
 {
-	Game.ReadKeyboard(key, x, y, false);
+	Game->ReadKeyboard(key, x, y, false);
 }
 void AppSpecialKeys(int key, int x, int y)
 {
-	Game.ReadSpecialKeyboard(key, x, y, true);
+	Game->ReadSpecialKeyboard(key, x, y, true);
 }
 void AppSpecialKeysUp(int key, int x, int y)
 {
-	Game.ReadSpecialKeyboard(key, x, y, false);
+	Game->ReadSpecialKeyboard(key, x, y, false);
 }
 void AppMouse(int button, int state, int x, int y)
 {
-	Game.ReadMouse(button, state, x, y);
+	Game->ReadMouse(button, state, x, y);
 }
 void AppIdle()
 {
-	if (!Game.Loop()) exit(0);
+	if (!Game->Loop()) exit(0);
 }
 
 void main(int argc, char** argv)
@@ -84,7 +84,7 @@ void main(int argc, char** argv)
 	}
 
 	//Game initializations
-	Game.Init();
+	Game->Init();
 
 	//Application loop
 	glutMainLoop();

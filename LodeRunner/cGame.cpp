@@ -37,8 +37,6 @@ bool cGame::Init()
 
 	//Stage initialization
 	active_scene = new cMenuScene();
-
-	
 	
 	return true;
 }

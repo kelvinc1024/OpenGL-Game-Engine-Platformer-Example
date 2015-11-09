@@ -11,8 +11,11 @@
 class cGame
 {
 public:
-	cGame(void);
-	virtual ~cGame(void);
+	static cGame& getInstance()
+	{
+		static cGame instance;
+		return instance;
+	}
 
 	bool Init();
 	bool Loop();
@@ -29,8 +32,12 @@ public:
 	void Render();
 
 private:
-	unsigned char keys[256];
+	~cGame(void);
+	cGame(void);
+	cGame(cGame const&) = delete;
+	void operator=(cGame const&) = delete;
 
+	unsigned char keys[256];
 	bool bSceneValid = true;
 
 	cScene *active_scene;
