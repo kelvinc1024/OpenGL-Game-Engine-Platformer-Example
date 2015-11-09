@@ -7,6 +7,7 @@
 
 class cTexture
 {
+
 public:
 	cTexture(void);
 	~cTexture(void);
