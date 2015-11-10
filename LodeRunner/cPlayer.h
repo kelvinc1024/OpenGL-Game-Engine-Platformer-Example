@@ -1,10 +1,13 @@
 #pragma once
 #include"Globals.h"
 #include "cSprite.h"
+#include "cAnimation.h"
+#include "cAnimControl.h"
 
 class cPlayer
 {
 private:
+	cAnimControl *animControl;
 	std::vector<cSprite*> *playerSheet;
 	float x, y;
 	int width, height;

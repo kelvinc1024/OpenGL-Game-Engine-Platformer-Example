@@ -17,7 +17,7 @@ private:
 	std::map<std::string, cAnimation> animStatus;
 	std::string activeName;
 	cAnimation activeAnimation;
-	int index;
-	float counter;
+	int index = 0;
+	float counter = 0;
 };
 

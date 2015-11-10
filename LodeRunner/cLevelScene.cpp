@@ -20,6 +20,7 @@ void cLevelScene::Init()
 	//}
 
 	player = new cPlayer(cAssetManager::getInstance().player, 100, 200, 2 * TILE_SIZE, 4 * TILE_SIZE);
+	player->Init();
 }
 
 bool cLevelScene::Load()

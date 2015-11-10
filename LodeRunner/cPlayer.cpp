@@ -14,33 +14,59 @@ cPlayer::~cPlayer()
 void cPlayer::Render()
 {
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, playerSheet->at(0)->Texture());
+	glBindTexture(GL_TEXTURE_2D, playerSheet->at(animControl->Index())->Texture());
 	glBegin(GL_QUADS);
 	/*playerSheets->X0(0);playerSheets->X1(0.125);
 	playerSheets->Y0(0);playerSheets->Y1(0.125);*/
 
-	glTexCoord2f(playerSheet->at(0)->X0(), playerSheet->at(0)->Y1());	glVertex3i(x, y, 50);
-	glTexCoord2f(playerSheet->at(0)->X1(), playerSheet->at(0)->Y1());	glVertex3i(x + Width(), y, 50);
-	glTexCoord2f(playerSheet->at(0)->X1(), playerSheet->at(0)->Y0());	glVertex3i(x + Width(), y + Height(), 50);
-	glTexCoord2f(playerSheet->at(0)->X0(), playerSheet->at(0)->Y0());	glVertex3i(x, y + Height(), 50);
+	glTexCoord2f(playerSheet->at(animControl->Index())->X0(), playerSheet->at(animControl->Index())->Y1());	glVertex3i(x, y, 50);
+	glTexCoord2f(playerSheet->at(animControl->Index())->X1(), playerSheet->at(animControl->Index())->Y1());	glVertex3i(x + Width(), y, 50);
+	glTexCoord2f(playerSheet->at(animControl->Index())->X1(), playerSheet->at(animControl->Index())->Y0());	glVertex3i(x + Width(), y + Height(), 50);
+	glTexCoord2f(playerSheet->at(animControl->Index())->X0(), playerSheet->at(animControl->Index())->Y0());	glVertex3i(x, y + Height(), 50);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
 
 void cPlayer::Init()
 {
-
+	animControl = new cAnimControl();
+	animControl->AddAnim("StraightLoop", "walk_forward", 0, 1, 0.2f);
+	animControl->AddAnim("StraightLoop", "walk_backward", 5, 6, 0.2f);
+	animControl->AddAnim("NoLoop", "jump", 2, 2, 0.2f);
+	animControl->AddAnim("NoLoop", "idle", 4, 4, 0.2f);
 }
 
 void cPlayer::Update(float tpf /*= 0.0333*/)
 {
+	animControl->UpdateAnim(tpf);
 	if (!IsGroundCollide()) {
-		y -= 100 * tpf;
+		y -= 200 * tpf;
 	}
 
 	if (currJumpPower > 0) {
-		currJumpPower -= 300 * tpf;
-		y += 300 * tpf;
+		currJumpPower -= 400 * tpf;
+		y += 400 * tpf;
+	}
+
+	if (!IsGroundCollide())
+	{
+		if (animControl->ActiveName() != "jump")
+			animControl->SetActiveAnim("jump");
+	}
+	else if (keys[GLUT_KEY_RIGHT])
+	{
+		if (animControl->ActiveName() != "walk_forward")
+			animControl->SetActiveAnim("walk_forward");
+	}
+	else if (keys[GLUT_KEY_LEFT])
+	{
+		if (animControl->ActiveName() != "walk_backward")
+			animControl->SetActiveAnim("walk_backward");
+	}
+	else
+	{
+		if (animControl->ActiveName() != "idle")
+			animControl->SetActiveAnim("idle");
 	}
 
 	if (keys[GLUT_KEY_LEFT] && !IsLeftCollide()) {
