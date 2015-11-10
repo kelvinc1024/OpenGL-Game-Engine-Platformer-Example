@@ -54,7 +54,7 @@ void cLevelScene::Render()
 	//background render
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, tex_id);
-	for (int j = 0;j < 10;j++) {
+	for (int j = -15;j < 15;j++) {
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 1);	glVertex3i(j * 600, 0, 100);
 		glTexCoord2f(1, 1);	glVertex3i((j + 1) * 600, 0, 100);
@@ -78,10 +78,17 @@ void cLevelScene::Render()
 
 void cLevelScene::Update(float tpf /*= 0.0333*/)
 {
+	player->Update();
+
+	CheckPlayerGroundCollision();
+	CheckPlayerSideCollision();
+
+	UpdateCamera();
 }
 
 void cLevelScene::ReadKeyboard(unsigned char key, int x, int y, bool press)
 {
+	player->ReadKeyboard(key, x, y, press);
 	if (press)
 	{
 		keys[key] = true;
@@ -94,6 +101,7 @@ void cLevelScene::ReadKeyboard(unsigned char key, int x, int y, bool press)
 
 void cLevelScene::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
 {
+	player->ReadSpecialKeyboard(key, x, y, press);
 	if (press)
 	{
 		keys[key] = true;
@@ -106,4 +114,77 @@ void cLevelScene::ReadSpecialKeyboard(unsigned char key, int x, int y, bool pres
 
 void cLevelScene::ReadMouse(int button, int state, int x, int y)
 {
+	player->ReadMouse(button, state, x, y);
+}
+
+void cLevelScene::CheckPlayerGroundCollision()
+{
+	bool groundFlag = false;
+	for (int i = 0;i < Stage.size();i++)
+	{
+		if (Stage.at(i)->Intersect(
+			player->X() + 30,
+			player->Y(),
+			player->X() + player->Width() - 30,
+			player->Y() + 50
+			)) {
+			if (player->Y() - player->Height() < Stage.at(i)->Y()) {
+				groundFlag = true;
+			}
+		}
+	}
+	if (groundFlag)
+		player->IsGroundCollide(true);
+	else
+		player->IsGroundCollide(false);
+}
+
+void cLevelScene::CheckPlayerSideCollision()
+{
+	bool rightCollision = false;
+	bool leftCollision = false;
+	for (int i = 0;i < Stage.size();i++)
+	{
+		if (Stage.at(i)->Intersect(
+			player->X(),
+			player->Y() + 30,
+			player->X() + 50,
+			player->Y() + player->Height() - 30
+			)) {
+			if (player->Y() - player->Height() < Stage.at(i)->Y()) {
+				leftCollision = true;
+			}
+		}
+		if (Stage.at(i)->Intersect(
+			player->X() + player->Width() - 50,
+			player->Y() + 30,
+			player->X() + player->Width(),
+			player->Y() + player->Height() - 30
+			)) {
+			if (player->X() < Stage.at(i)->X() + Stage.at(i)->Width()) {
+				rightCollision = true;
+			}
+		}
+	}
+	if (rightCollision)
+		player->IsRightCollide(true);
+	else
+		player->IsRightCollide(false);
+	if (leftCollision)
+		player->IsLeftCollide(true);
+	else
+		player->IsLeftCollide(false);
+}
+
+void cLevelScene::UpdateCamera()
+{
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	visible_area.top = GAME_HEIGHT;
+	visible_area.bottom = 0;
+	visible_area.left = player->X() - GAME_WIDTH / 2 + 200;
+	visible_area.right = player->X() + GAME_WIDTH / 2 + 200;
+	glOrtho(visible_area.left, visible_area.right, visible_area.bottom, visible_area.top, 3, -101);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 }

@@ -27,6 +27,67 @@ void cPlayer::Render()
 	glDisable(GL_TEXTURE_2D);
 }
 
+void cPlayer::Init()
+{
+
+}
+
+void cPlayer::Update(float tpf /*= 0.0333*/)
+{
+	if (!IsGroundCollide()) {
+		y -= 100 * tpf;
+	}
+
+	if (currJumpPower > 0) {
+		currJumpPower -= 300 * tpf;
+		y += 300 * tpf;
+	}
+
+	if (keys[GLUT_KEY_LEFT] && !IsLeftCollide()) {
+		x -= 300 * tpf;
+	}
+	else if (keys[GLUT_KEY_RIGHT] && !IsRightCollide()) {
+		x += 300 * tpf;
+	}
+}
+
+void cPlayer::ReadKeyboard(unsigned char key, int x, int y, bool press)
+{
+	if (key == ' ' && !keys[key] && press && IsGroundCollide()) {
+		Jump();
+	}
+	if (press)
+	{
+		keys[key] = true;
+	}
+	else
+	{
+		keys[key] = false;
+	}
+}
+
+void cPlayer::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
+{
+	if (press)
+	{
+		keys[key] = true;
+	}
+	else
+	{
+		keys[key] = false;
+	}
+}
+
+void cPlayer::ReadMouse(int button, int state, int x, int y)
+{
+
+}
+
+void cPlayer::Jump()
+{
+	currJumpPower = jumpPower;
+}
+
 bool cPlayer::Intersect(float x0, float y0, float x1, float y1)
 {
 	return x < x1 && x + width > x0 &&
