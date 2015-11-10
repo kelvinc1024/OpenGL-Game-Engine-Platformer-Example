@@ -11,7 +11,8 @@ private:
 	int posX, posY;
 public:
 	cTile();
-	cTile(cSprite *tileSprite, float x, float y, int width, int height, int posX, int posY);
+	cTile(cSprite *tileSprite, float x, float y, int width, int height, int posX, int posY) 
+		:tileSprite(tileSprite),x(x),y(y),width(width),height(height),posX(posX),posY(posY){}
 	~cTile();
 
 	int Height() const { return height; }

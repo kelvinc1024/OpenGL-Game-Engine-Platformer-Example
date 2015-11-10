@@ -1,16 +1,6 @@
 #include "cTile.h"
 #include "cAssetManager.h"
 
-cTile::cTile(cSprite *tileSprite, float x, float y, int width, int height, int posX, int posY)
-{
-	this->tileSprite = tileSprite;
-	this->x = x;
-	this->y = y;
-	this->width = width;
-	this->height = height;
-	this->posX = posX;
-	this->posY = posY;
-}
 
 cTile::cTile()
 {

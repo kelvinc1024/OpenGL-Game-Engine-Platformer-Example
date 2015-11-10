@@ -6,7 +6,6 @@
 
 //Image array size
 #define NUM_TEX		 3
-
 //Image identifiers
 #define SPRITESHEET_PLAYERS	2
 #define SPRITESHEET_TILES	1
@@ -25,8 +24,8 @@ public:
 	void GetSize(int img, int *w, int *h);
 	bool Load();
 
-	std::vector<cSprite*> player;
-	std::vector<cSprite*> tiles;
+	std::vector<cSprite*> *player = new std::vector<cSprite*>;
+	std::vector<cSprite*> *tiles = new std::vector<cSprite*>;
 private:
 	~cAssetManager(void);
 	cAssetManager(void);

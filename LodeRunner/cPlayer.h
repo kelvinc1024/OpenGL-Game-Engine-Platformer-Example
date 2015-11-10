@@ -1,14 +1,21 @@
 #pragma once
+#include"Globals.h"
+#include "cSprite.h"
+
 class cPlayer
 {
 private:
+	std::vector<cSprite*> *playerSheet;
 	float x, y;
 	int width, height;
 
 public:
+	cPlayer(std::vector<cSprite*> *playerSheet, float x, float y, int width, int height)
+		:playerSheet(playerSheet), x(x), y(y), width(width), height(height) {}
 	cPlayer();
 	~cPlayer();
 
+	void Render();
 	int Height() const { return height; }
 	void Height(int val) { height = val; }
 	int Width() const { return width; }

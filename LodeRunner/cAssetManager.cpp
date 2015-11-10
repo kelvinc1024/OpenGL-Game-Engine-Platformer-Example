@@ -41,7 +41,7 @@ bool cAssetManager::Load()
 			x1 = sprite_width*(j + 1);
 			y0 = sprite_height*i;
 			y1 = sprite_height*(i + 1);
-			tiles.push_back(new cSprite(GetID(SPRITESHEET_TILES), x0, y0, x1, y1));
+			tiles->push_back(new cSprite(GetID(SPRITESHEET_TILES), x0, y0, x1, y1));
 		}
 	}
 
@@ -58,7 +58,8 @@ bool cAssetManager::Load()
 			x1 = sprite_width*(j + 1);
 			y0 = sprite_height*i;
 			y1 = sprite_height*(i + 1);
-			player.push_back(&cSprite(GetID(SPRITESHEET_PLAYERS), x0, y0, x1, y1));
+			player->push_back(new cSprite(GetID(SPRITESHEET_PLAYERS), x0, y0, x1, y1));
+			
 		}
 	}
 

@@ -1,6 +1,4 @@
 #include "cLevelScene.h"
-#include <string.h>
-#include <GL\glew.h>
 #include "cAssetManager.h"
 #include "cGame.h"
 #pragma warning(disable:4996)
@@ -14,6 +12,16 @@ cLevelScene::~cLevelScene()
 {
 }
 
+void cLevelScene::Init()
+{
+	Load();
+	//for (int i = 0;i < TOTAL_TILE_Y;i++) {
+	//	printf("%s\n", Stage[i]);
+	//}
+
+	player = new cPlayer(cAssetManager::getInstance().player, 100, 200, 2 * TILE_SIZE, 4 * TILE_SIZE);
+}
+
 bool cLevelScene::Load()
 {
 	FILE *f = fopen("Levels/level01.txt", "r");
@@ -24,7 +32,7 @@ bool cLevelScene::Load()
 			fscanf(f, "%[^\n]\n", &temp);
 			for (int j = 0;j < strlen(temp);j++) {
 				if (temp[j] != ' ') {
-					cTile *t = new cTile(cAssetManager::getInstance().tiles[3], j*TILE_SIZE, GAME_HEIGHT-i*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
+					cTile *t = new cTile(cAssetManager::getInstance().tiles->at(3), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
 					Stage.push_back(t);
 				}
 			}
@@ -61,17 +69,12 @@ void cLevelScene::Render()
 		Stage[j]->Render();
 	}
 
+	player->Render();
 
 	renderBitmapString(5, 580, 9, GLUT_BITMAP_HELVETICA_18, "Lighthouse3D", 1, 0, 0);
 }
 
-void cLevelScene::Init()
-{
-	Load();
-	//for (int i = 0;i < TOTAL_TILE_Y;i++) {
-	//	printf("%s\n", Stage[i]);
-	//}
-}
+
 
 void cLevelScene::Update(float tpf /*= 0.0333*/)
 {
