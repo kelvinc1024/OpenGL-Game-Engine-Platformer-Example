@@ -30,8 +30,8 @@ bool cAssetManager::Load()
 
 	res = LoadImage(SPRITESHEET_TILES, "Textures/Spritesheets/spritesheet_tiles.png", GL_RGBA);
 	if (!res) return false;
-	for (int j = 0; j < 7; j++) {
-		for (int i = 0; i < 8; i++) {
+	for (int j = 0; j < 5; j++) {
+		for (int i = 0; i < 16; i++) {
 			float x0, y0, x1, y1;
 			int tex_w, tex_h;
 			GetSize(GetID(SPRITESHEET_TILES), &tex_w, &tex_h);

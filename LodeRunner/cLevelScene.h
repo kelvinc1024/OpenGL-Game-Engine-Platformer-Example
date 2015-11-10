@@ -18,6 +18,9 @@ public:
 	bool Load();
 	std::vector<cTile*> Stage;
 	cPlayer *player;
+	cTile *exit;
+	cTile *exit_door_bottom;
+	cTile *exit_door_top;
 	cRect visible_area;
 
 	virtual void Render();

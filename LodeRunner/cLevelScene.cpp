@@ -32,8 +32,20 @@ bool cLevelScene::Load()
 			char temp[1000];
 			fscanf(f, "%[^\n]\n", &temp);
 			for (int j = 0;j < strlen(temp);j++) {
-				if (temp[j] != ' ') {
-					cTile *t = new cTile(cAssetManager::getInstance().tiles->at(3), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
+				if (temp[j] == 'e') {
+					exit = new cTile(cAssetManager::getInstance().tiles->at(71), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
+				}
+				else if (temp[j] == 'g') {
+					exit_door_bottom = new cTile(cAssetManager::getInstance().tiles->at(59), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE * 2, TILE_SIZE * 2, j, i);
+				}
+				else if (temp[j] == 'h') {
+					exit_door_top = new cTile(cAssetManager::getInstance().tiles->at(58), j*TILE_SIZE, (TOTAL_TILE_Y - i+1)*TILE_SIZE, TILE_SIZE * 2, TILE_SIZE * 2, j, i);
+				}
+				else if (temp[j] == 'p') {
+
+				}
+				else if (temp[j] != ' ') {
+					cTile *t = new cTile(cAssetManager::getInstance().tiles->at(66), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
 					Stage.push_back(t);
 				}
 			}
@@ -69,6 +81,10 @@ void cLevelScene::Render()
 	for (int j = 0;j < Stage.size();j++) {
 		Stage[j]->Render();
 	}
+
+	exit->Render();
+	exit_door_bottom->Render();
+	exit_door_top->Render();
 
 	player->Render();
 
