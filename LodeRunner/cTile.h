@@ -8,9 +8,10 @@ private:
 	cSprite *tileSprite;
 	float x, y;
 	int width, height;
+	int posX, posY;
 public:
 	cTile();
-	cTile(cSprite *tileSprite);
+	cTile(cSprite *tileSprite, float x, float y, int width, int height, int posX, int posY);
 	~cTile();
 
 	int Height() const { return height; }
@@ -28,5 +29,9 @@ public:
 	void Render();
 	char Tile() const { return tile; }
 	void Tile(char val) { tile = val; }
+	int PosY() const { return posY; }
+	void PosY(int val) { posY = val; }
+	int PosX() const { return posX; }
+	void PosX(int val) { posX = val; }
 };
 

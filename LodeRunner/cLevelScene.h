@@ -1,10 +1,11 @@
 #pragma once
 #include "Globals.h"
 #include "cScene.h"
+#include "cTile.h"
 #define TOTAL_TILE_Y 18
 #define TOTAL_TILE_X 1000
-#define TILE_SIZE 16
-#define TEXTURE_TILE_SIZE 16
+#define TILE_SIZE 32
+#define TEXTURE_TILE_SIZE 128
 
 
 class cLevelScene:public cScene
@@ -13,7 +14,7 @@ public:
 	cLevelScene();
 	~cLevelScene();
 	bool Load();
-	char Stage[TOTAL_TILE_Y][TOTAL_TILE_X];
+	std::vector<cTile*> Stage;
 
 	virtual void Render();
 

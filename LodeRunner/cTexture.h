@@ -3,7 +3,7 @@
 #pragma comment(lib,"corona")
 
 #include "Globals.h"
-#include "corona.h"
+#include <corona.h>
 
 class cTexture
 {

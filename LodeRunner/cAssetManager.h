@@ -25,8 +25,8 @@ public:
 	void GetSize(int img, int *w, int *h);
 	bool Load();
 
-	std::vector<cSprite> player;
-	std::vector<cSprite> tiles;
+	std::vector<cSprite*> player;
+	std::vector<cSprite*> tiles;
 private:
 	~cAssetManager(void);
 	cAssetManager(void);

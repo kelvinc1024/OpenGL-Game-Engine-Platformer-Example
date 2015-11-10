@@ -2,6 +2,7 @@
 #include <string.h>
 #include <GL\glew.h>
 #include "cAssetManager.h"
+#include "cGame.h"
 #pragma warning(disable:4996)
 
 cLevelScene::cLevelScene()
@@ -20,8 +21,15 @@ bool cLevelScene::Load()
 		int i = 0;
 		while (!feof(f)) {
 			char temp[1000];
-			fscanf(f, "%[^\n]\n", &Stage[i]);
+			fscanf(f, "%[^\n]\n", &temp);
+			for (int j = 0;j < strlen(temp);j++) {
+				if (temp[j] != ' ') {
+					cTile *t = new cTile(cAssetManager::getInstance().tiles[3], j*TILE_SIZE, GAME_HEIGHT-i*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
+					Stage.push_back(t);
+				}
+			}
 			++i;
+
 		}
 	}
 	else {
@@ -31,12 +39,13 @@ bool cLevelScene::Load()
 
 void cLevelScene::Render()
 {
-	int tex_id = cAssetManager::getInstance().GetID(SPRITESHEET_TILES);
+	GLuint tex_id = cAssetManager::getInstance().GetID(BG_COLORED_GRASS);
 	int tex_w, tex_h;
 	cAssetManager::getInstance().GetSize(tex_id, &tex_w, &tex_h);
 
+	//background render
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, cAssetManager::getInstance().GetID(BG_COLORED_GRASS));
+	glBindTexture(GL_TEXTURE_2D, tex_id);
 	for (int j = 0;j < 10;j++) {
 		glBegin(GL_QUADS);
 		glTexCoord2f(0, 1);	glVertex3i(j * 600, 0, 100);
@@ -47,6 +56,11 @@ void cLevelScene::Render()
 	}
 	glDisable(GL_TEXTURE_2D);
 
+	//tile render
+	for (int j = 0;j < Stage.size();j++) {
+		Stage[j]->Render();
+	}
+
 
 	renderBitmapString(5, 580, 9, GLUT_BITMAP_HELVETICA_18, "Lighthouse3D", 1, 0, 0);
 }
@@ -54,9 +68,9 @@ void cLevelScene::Render()
 void cLevelScene::Init()
 {
 	Load();
-	for (int i = 0;i < TOTAL_TILE_Y;i++) {
-		printf("%s\n", Stage[i]);
-	}
+	//for (int i = 0;i < TOTAL_TILE_Y;i++) {
+	//	printf("%s\n", Stage[i]);
+	//}
 }
 
 void cLevelScene::Update(float tpf /*= 0.0333*/)
