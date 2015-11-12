@@ -7,11 +7,6 @@
 
 cGame *Game = &(cGame::getInstance());
 
-/**
-@w asdfasdf
-@h asdfasdf
-asdfasdfsadf
-*/
 void AppReshape(int w, int h)
 {
 	Game->Reshape(w, h);
