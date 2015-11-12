@@ -27,9 +27,6 @@
     <ClCompile Include="cAssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cLevelScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cAnimation.cpp">
       <Filter>Source Files\lib</Filter>
     </ClCompile>
@@ -60,15 +57,15 @@
     <ClCompile Include="cTile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cLevel1Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cAssetManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cLevelScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cAnimation.h">
@@ -102,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cLevel1Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

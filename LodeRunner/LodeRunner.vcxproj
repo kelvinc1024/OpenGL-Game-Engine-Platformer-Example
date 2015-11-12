@@ -124,7 +124,7 @@
     <ClCompile Include="cAnimControl.cpp" />
     <ClCompile Include="cAssetManager.cpp" />
     <ClCompile Include="cGame.cpp" />
-    <ClCompile Include="cLevelScene.cpp" />
+    <ClCompile Include="cLevel1Scene.cpp" />
     <ClCompile Include="cMenuScene.cpp" />
     <ClCompile Include="cPlayer.cpp" />
     <ClCompile Include="cScene.cpp" />
@@ -142,7 +142,7 @@
     <ClInclude Include="cMenuScene.h" />
     <ClInclude Include="cPlayer.h" />
     <ClInclude Include="cRect.h" />
-    <ClInclude Include="cLevelScene.h" />
+    <ClInclude Include="cLevel1Scene.h" />
     <ClInclude Include="cScene.h" />
     <ClInclude Include="cSound.h" />
     <ClInclude Include="cSprite.h" />

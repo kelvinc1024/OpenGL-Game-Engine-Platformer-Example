@@ -1,5 +1,7 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #pragma once
 #include "cScene.h"
+#include "cRect.h"
 class cMenuScene:public cScene
 {
 public:
@@ -20,5 +22,6 @@ public:
 
 private:
 	bool keys[255];
+	cRect visible_area;
 };
 

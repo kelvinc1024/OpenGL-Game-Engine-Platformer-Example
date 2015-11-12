@@ -1,3 +1,4 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #include "Globals.h"
 #include "cGame.h"
 
@@ -6,6 +7,11 @@
 
 cGame *Game = &(cGame::getInstance());
 
+/**
+@w asdfasdf
+@h asdfasdf
+asdfasdfsadf
+*/
 void AppReshape(int w, int h)
 {
 	Game->Reshape(w, h);
@@ -41,6 +47,7 @@ void AppIdle()
 
 void main(int argc, char** argv)
 {
+
 	int res_x, res_y, pos_x, pos_y;
 
 	//GLUT initialization

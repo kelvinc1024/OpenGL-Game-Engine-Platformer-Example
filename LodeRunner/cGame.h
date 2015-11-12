@@ -1,3 +1,4 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #pragma once
 
 #include "cSound.h"
@@ -16,20 +17,53 @@ public:
 		static cGame instance;
 		return instance;
 	}
-
-	bool Init();
+	
+	/**
+	Main loop to be called from GLUTMain, and use to call init update render method
+	*/
 	bool Loop();
 
-	//Input
+	/**
+	Read normal keyboard input such as [a...z]
+	*/
 	void ReadKeyboard(unsigned char key, int x, int y, bool press);
+
+	/**
+	Read special keyboard input such as ctrl
+	*/
 	void ReadSpecialKeyboard(unsigned char key, int x, int y, bool press);
+
+	/**
+	Read mouse input
+	*/
 	void ReadMouse(int button, int state, int x, int y);
-	//Process
+
+	/**
+	called once each new scene applied
+	*/
+	bool Init();
+
+	/**
+	Game main loop, in this engine the default frame rate is 30 fps
+	so we really need to modifiy the time per frame(tpf)
+	*/
 	bool Update(float tpf=0.0333);
+
+	/**
+	Reshape use to justify the viewport width and height to match the frame width height
+	so we can scretch the game view
+	*/
 	void Reshape(int w, int h);
-	//Output
+
+	/**
+	Game render output, use to render any sprite or text to screen
+	*/
 	void Render();
 
+	/**
+	Plan to change to the new scene after end of current update
+	At the end of the scene, RealUpdateScene function will be called to change active_scene to next_scene
+	*/
 	void UpdateScene(cScene *scene);
 private:
 	~cGame(void);
@@ -40,12 +74,24 @@ private:
 	unsigned char keys[256];
 	bool bSceneValid = true;
 	bool bIsFirst = true;
-
+	
+	/**
+	Current active scene that being use
+	*/
 	cScene *active_scene;
+
+	/**
+	Next scene that will be active after end of current Update
+	*/
 	cScene *next_scene;
+
+	/**
+	Default camera viewport to use on the ortographic camera
+	*/
 	cRect visible_area;
 
-	float time;
-
+	/**
+	Apply next scene to be the active scene
+	*/
 	void RealUpdateScene();
 };

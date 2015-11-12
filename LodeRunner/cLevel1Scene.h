@@ -1,3 +1,4 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #pragma once
 #include "Globals.h"
 #include "cScene.h"
@@ -10,11 +11,11 @@
 #define TEXTURE_TILE_SIZE 128
 
 
-class cLevelScene:public cScene
+class cLevel1Scene:public cScene
 {
 public:
-	cLevelScene();
-	~cLevelScene();
+	cLevel1Scene();
+	~cLevel1Scene();
 	bool Load();
 	std::vector<cTile*> Stage;
 	cPlayer *player;

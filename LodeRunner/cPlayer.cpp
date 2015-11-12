@@ -1,3 +1,4 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #include "cPlayer.h"
 
 
@@ -16,8 +17,6 @@ void cPlayer::Render()
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, playerSheet->at(animControl->Index())->Texture());
 	glBegin(GL_QUADS);
-	/*playerSheets->X0(0);playerSheets->X1(0.125);
-	playerSheets->Y0(0);playerSheets->Y1(0.125);*/
 
 	glTexCoord2f(playerSheet->at(animControl->Index())->X0(), playerSheet->at(animControl->Index())->Y1());	glVertex3i(x, y, 49);
 	glTexCoord2f(playerSheet->at(animControl->Index())->X1(), playerSheet->at(animControl->Index())->Y1());	glVertex3i(x + Width(), y, 49);

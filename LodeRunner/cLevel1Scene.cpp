@@ -1,18 +1,20 @@
-#include "cLevelScene.h"
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
+#include "cLevel1Scene.h"
 #include "cAssetManager.h"
 #include "cGame.h"
+#include "cMenuScene.h"
 #pragma warning(disable:4996)
 
-cLevelScene::cLevelScene()
+cLevel1Scene::cLevel1Scene()
 {
 
 }
 
-cLevelScene::~cLevelScene()
+cLevel1Scene::~cLevel1Scene()
 {
 }
 
-void cLevelScene::Init()
+void cLevel1Scene::Init()
 {
 	Load();
 	//for (int i = 0;i < TOTAL_TILE_Y;i++) {
@@ -23,7 +25,7 @@ void cLevelScene::Init()
 	player->Init();
 }
 
-bool cLevelScene::Load()
+bool cLevel1Scene::Load()
 {
 	FILE *f = fopen("Levels/level01.txt", "r");
 	if (f) {
@@ -58,7 +60,7 @@ bool cLevelScene::Load()
 	}
 }
 
-void cLevelScene::Render()
+void cLevel1Scene::Render()
 {
 	GLuint tex_id = cAssetManager::getInstance().GetID(BG_COLORED_GRASS);
 	int tex_w, tex_h;
@@ -93,7 +95,7 @@ void cLevelScene::Render()
 
 
 
-void cLevelScene::Update(float tpf /*= 0.0333*/)
+void cLevel1Scene::Update(float tpf /*= 0.0333*/)
 {
 	player->Update();
 
@@ -103,7 +105,7 @@ void cLevelScene::Update(float tpf /*= 0.0333*/)
 	UpdateCamera();
 }
 
-void cLevelScene::ReadKeyboard(unsigned char key, int x, int y, bool press)
+void cLevel1Scene::ReadKeyboard(unsigned char key, int x, int y, bool press)
 {
 	player->ReadKeyboard(key, x, y, press);
 	if (press)
@@ -116,7 +118,7 @@ void cLevelScene::ReadKeyboard(unsigned char key, int x, int y, bool press)
 	}
 }
 
-void cLevelScene::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
+void cLevel1Scene::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
 {
 	player->ReadSpecialKeyboard(key, x, y, press);
 	if (press)
@@ -129,12 +131,12 @@ void cLevelScene::ReadSpecialKeyboard(unsigned char key, int x, int y, bool pres
 	}
 }
 
-void cLevelScene::ReadMouse(int button, int state, int x, int y)
+void cLevel1Scene::ReadMouse(int button, int state, int x, int y)
 {
 	player->ReadMouse(button, state, x, y);
 }
 
-void cLevelScene::CheckPlayerGroundCollision()
+void cLevel1Scene::CheckPlayerGroundCollision()
 {
 	bool groundFlag = false;
 	for (int i = 0;i < Stage.size();i++)
@@ -154,9 +156,18 @@ void cLevelScene::CheckPlayerGroundCollision()
 		player->IsGroundCollide(true);
 	else
 		player->IsGroundCollide(false);
+
+	if (exit_door_bottom->Intersect(
+		player->X(), 
+		player->Y(), 
+		player->X() + player->Width(), 
+		player->Y() + player->Height())
+		) {
+		cGame::getInstance().UpdateScene(new cMenuScene());
+	}
 }
 
-void cLevelScene::CheckPlayerSideCollision()
+void cLevel1Scene::CheckPlayerSideCollision()
 {
 	bool rightCollision = false;
 	bool leftCollision = false;
@@ -193,7 +204,7 @@ void cLevelScene::CheckPlayerSideCollision()
 		player->IsLeftCollide(false);
 }
 
-void cLevelScene::UpdateCamera()
+void cLevel1Scene::UpdateCamera()
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();

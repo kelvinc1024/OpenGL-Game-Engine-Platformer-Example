@@ -1,4 +1,6 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #pragma warning(disable:4996)
+#include "Globals.h"
 #include "cGame.h"
 #include "cMenuScene.h"
 
@@ -12,8 +14,6 @@ cGame::~cGame(void)
 
 bool cGame::Init()
 {
-	time = 1.0f;
-
 	//Graphics initialization
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glMatrixMode(GL_PROJECTION);
@@ -47,7 +47,7 @@ bool cGame::Loop()
 	int t1, t2;
 	t1 = glutGet(GLUT_ELAPSED_TIME);
 
-	if (bIsFirst) {
+	if (bIsFirst) {//only call once for init on active_scene
 		bIsFirst = false;
 		active_scene->Init();
 	}
@@ -68,12 +68,12 @@ bool cGame::Loop()
 //Input
 void cGame::ReadKeyboard(unsigned char key, int x, int y, bool press)
 {
-	active_scene->ReadKeyboard(key, x, y, press);
+	active_scene->ReadKeyboard(key, x, y, press);//call ReadKeyboard on active scene to receive input on scene
 }
 
 void cGame::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
 {
-	active_scene->ReadSpecialKeyboard(key, x, y, press);
+	active_scene->ReadSpecialKeyboard(key, x, y, press);//call Read SpecialKeyboard on active scene to receive special key
 }
 
 void cGame::ReadMouse(int button, int state, int x, int y)
@@ -81,7 +81,6 @@ void cGame::ReadMouse(int button, int state, int x, int y)
 	active_scene->ReadMouse(button, state, x, y);
 }
 
-//Process
 bool cGame::Update(float tpf/*=0.0333*/)
 {
 	active_scene->Update(tpf);

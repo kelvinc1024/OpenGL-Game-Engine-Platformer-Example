@@ -1,3 +1,4 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #pragma once
 
 #pragma comment(lib, "fmodex_vc.lib" ) // fmod library
@@ -23,8 +24,6 @@ public:
 
 	bool Load();
 	void Play(int sound_id);
-	void Stop(int sound_id);
-	void SmoothStop(int sound_id);
 	void StopAll();
 	void Update();
 

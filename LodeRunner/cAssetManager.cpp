@@ -1,3 +1,4 @@
+// Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #pragma warning(disable:4996)
 #include "cAssetManager.h"
 #include "Globals.h"
