@@ -8,6 +8,6 @@ The Game framework is open-sourced software licensed under the [MIT license](htt
 
 Setup your visual studio with these file
 
-https://drive.google.com/file/d/0B_WK0cxikouXaHlDRzcwYkR1WFk/view?usp=sharing
+http://1drv.ms/1ZUrRzC
 
 how to setup these file included inside
