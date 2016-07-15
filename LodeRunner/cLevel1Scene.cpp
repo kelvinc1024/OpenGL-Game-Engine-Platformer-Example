@@ -16,13 +16,12 @@ cLevel1Scene::~cLevel1Scene()
 
 void cLevel1Scene::Init()
 {
+	cScene::Init();
 	Load();
-	//for (int i = 0;i < TOTAL_TILE_Y;i++) {
-	//	printf("%s\n", Stage[i]);
-	//}
 
 	player = new cPlayer(cAssetManager::getInstance().player, 100, 200, 2 * TILE_SIZE, 4 * TILE_SIZE);
-	player->Init();
+	AttachGameObject(player);
+	//DetachGameObject(player); //for detach object from scene
 }
 
 bool cLevel1Scene::Load()
@@ -36,12 +35,15 @@ bool cLevel1Scene::Load()
 			for (int j = 0;j < strlen(temp);j++) {
 				if (temp[j] == 'e') {
 					exit = new cTile(cAssetManager::getInstance().tiles->at(71), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
+					AttachGameObject(exit);
 				}
 				else if (temp[j] == 'g') {
 					exit_door_bottom = new cTile(cAssetManager::getInstance().tiles->at(59), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE * 2, TILE_SIZE * 2, j, i);
+					AttachGameObject(exit);
 				}
 				else if (temp[j] == 'h') {
 					exit_door_top = new cTile(cAssetManager::getInstance().tiles->at(58), j*TILE_SIZE, (TOTAL_TILE_Y - i+1)*TILE_SIZE, TILE_SIZE * 2, TILE_SIZE * 2, j, i);
+					AttachGameObject(exit);
 				}
 				else if (temp[j] == 'p') {
 
@@ -49,6 +51,7 @@ bool cLevel1Scene::Load()
 				else if (temp[j] != ' ') {
 					cTile *t = new cTile(cAssetManager::getInstance().tiles->at(66), j*TILE_SIZE, (TOTAL_TILE_Y - i)*TILE_SIZE, TILE_SIZE, TILE_SIZE, j, i);
 					Stage.push_back(t);
+					AttachGameObject(t);
 				}
 			}
 			++i;
@@ -62,6 +65,7 @@ bool cLevel1Scene::Load()
 
 void cLevel1Scene::Render()
 {
+	cScene::Render();
 	GLuint tex_id = cAssetManager::getInstance().GetID(BG_COLORED_GRASS);
 	int tex_w, tex_h;
 	cAssetManager::getInstance().GetSize(tex_id, &tex_w, &tex_h);
@@ -79,16 +83,6 @@ void cLevel1Scene::Render()
 	}
 	glDisable(GL_TEXTURE_2D);
 
-	//tile render
-	for (int j = 0;j < Stage.size();j++) {
-		Stage[j]->Render();
-	}
-
-	exit->Render();
-	exit_door_bottom->Render();
-	exit_door_top->Render();
-
-	player->Render();
 
 	renderBitmapString(5, 580, 9, GLUT_BITMAP_HELVETICA_18, "Lighthouse3D", 1, 0, 0);
 }
@@ -97,7 +91,7 @@ void cLevel1Scene::Render()
 
 void cLevel1Scene::Update(float tpf /*= 0.0333*/)
 {
-	player->Update();
+	cScene::Update();
 
 	CheckPlayerGroundCollision();
 	CheckPlayerSideCollision();
@@ -107,7 +101,8 @@ void cLevel1Scene::Update(float tpf /*= 0.0333*/)
 
 void cLevel1Scene::ReadKeyboard(unsigned char key, int x, int y, bool press)
 {
-	player->ReadKeyboard(key, x, y, press);
+	cScene::ReadKeyboard(key, x, y, press);
+
 	if (press)
 	{
 		keys[key] = true;
@@ -120,7 +115,8 @@ void cLevel1Scene::ReadKeyboard(unsigned char key, int x, int y, bool press)
 
 void cLevel1Scene::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
 {
-	player->ReadSpecialKeyboard(key, x, y, press);
+	cScene::ReadSpecialKeyboard(key, x, y, press);
+
 	if (press)
 	{
 		keys[key] = true;
@@ -133,7 +129,7 @@ void cLevel1Scene::ReadSpecialKeyboard(unsigned char key, int x, int y, bool pre
 
 void cLevel1Scene::ReadMouse(int button, int state, int x, int y)
 {
-	player->ReadMouse(button, state, x, y);
+	cScene::ReadMouse(button, state, x, y);
 }
 
 void cLevel1Scene::CheckPlayerGroundCollision()

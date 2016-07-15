@@ -60,6 +60,9 @@
     <ClCompile Include="cLevel1Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cGameObject.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="cLevel1Scene.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cGameObject.h">
+      <Filter>Header Files\lib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

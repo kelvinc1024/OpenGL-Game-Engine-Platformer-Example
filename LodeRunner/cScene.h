@@ -1,43 +1,50 @@
 // Copyright 2015 Kelvin Chandra, Software Laboratory Center, Binus University. All Rights Reserved.
 #pragma once
 #include "Globals.h"
+#include "cGameObject.h"
+#include <map>
 
 class cScene
 {
 protected:
-
+	std::map<cGameObject*, cGameObject*> sceneObject;
 public:
 	cScene();
 	~cScene();
+
+	virtual void AttachGameObject(cGameObject *o);
+
+	virtual void DetachGameObject(cGameObject *o);
+
 	/**
-	method that will be called first and only once when 
+	method that will be called first and only once when
 	*/
-	virtual void Init() = 0;
+	virtual void Init();
 
 	/**
 	method that will be called each frame, use this to update the scene/game logic
 	*/
-	virtual void Update(float tpf = 0.0333) = 0;
+	virtual void Update(float tpf = 0.0333);
 
 	/**
-	method that will be called each frame after update been 
+	method that will be called each frame after update been
 	*/
-	virtual void Render() = 0;
-	
+	virtual void Render();
+
 	/**
 	Read normal keyboard input such as [a...z], this method been called from cGame
 	*/
-	virtual void ReadKeyboard(unsigned char key, int x, int y, bool press) = 0;
+	virtual void ReadKeyboard(unsigned char key, int x, int y, bool press);
 
 	/**
 	Read special keyboard input such as ctrl, this method been called from cGame
 	*/
-	virtual void ReadSpecialKeyboard(unsigned char key, int x, int y, bool press) = 0;
+	virtual void ReadSpecialKeyboard(unsigned char key, int x, int y, bool press);
 
 	/**
 	Read mouse input, this method been called from cGame
 	*/
-	virtual void ReadMouse(int button, int state, int x, int y) = 0;
+	virtual void ReadMouse(int button, int state, int x, int y);
 
 	/**
 	Render String Example

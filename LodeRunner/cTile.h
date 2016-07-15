@@ -2,7 +2,8 @@
 #pragma once
 #include "Globals.h"
 #include "cSprite.h"
-class cTile
+#include "cGameObject.h"
+class cTile: public cGameObject
 {
 private:
 	char tile;
@@ -28,12 +29,24 @@ public:
 	cSprite * TileSprite() const { return tileSprite; }
 	void TileSprite(cSprite * val) { tileSprite = val; }
 
-	void Render();
 	char Tile() const { return tile; }
 	void Tile(char val) { tile = val; }
 	int PosY() const { return posY; }
 	void PosY(int val) { posY = val; }
 	int PosX() const { return posX; }
 	void PosX(int val) { posX = val; }
+
+	virtual void Render() override;
+
+	virtual void Init() override;
+
+	virtual void Update(float tpf = 0.0333) override;
+
+	virtual void ReadKeyboard(unsigned char key, int x, int y, bool press) override;
+
+	virtual void ReadSpecialKeyboard(unsigned char key, int x, int y, bool press) override;
+
+	virtual void ReadMouse(int button, int state, int x, int y) override;
+
 };
 

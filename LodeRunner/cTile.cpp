@@ -33,3 +33,23 @@ void cTile::Render()
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 }
+
+void cTile::Init()
+{
+}
+
+void cTile::Update(float tpf /*= 0.0333*/)
+{
+}
+
+void cTile::ReadKeyboard(unsigned char key, int x, int y, bool press)
+{
+}
+
+void cTile::ReadSpecialKeyboard(unsigned char key, int x, int y, bool press)
+{
+}
+
+void cTile::ReadMouse(int button, int state, int x, int y)
+{
+}

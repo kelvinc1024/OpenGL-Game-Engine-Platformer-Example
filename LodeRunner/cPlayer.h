@@ -4,8 +4,9 @@
 #include "cSprite.h"
 #include "cAnimation.h"
 #include "cAnimControl.h"
+#include "cGameObject.h"
 
-class cPlayer
+class cPlayer: public cGameObject
 {
 private:
 	cAnimControl *animControl;
